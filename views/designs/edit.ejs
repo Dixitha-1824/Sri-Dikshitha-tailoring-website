@@ -1,0 +1,166 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+
+      <div
+        style="
+          border:1px solid #e0e0e0;
+          border-radius:12px;
+          padding:24px;
+          background:#ffffff;
+        "
+      >
+
+        <h3 class="mb-4">Edit Design</h3>
+
+        <form
+          action="/designs/<%= design._id %>?_method=PUT"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Design Title</label>
+            <input
+              type="text"
+              name="title"
+              class="form-control"
+              value="<%= design.title %>"
+              required
+            />
+          </div>
+
+          <% if (design.images && design.images.length > 0) { %>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">
+                Existing Images (click ❌ to delete)
+              </label>
+
+              <div class="d-flex flex-wrap gap-3">
+
+                <% design.images.forEach(img => { %>
+                  <div
+                    class="image-box"
+                    style="
+                      position:relative;
+                      width:110px;
+                      height:110px;
+                    "
+                  >
+
+                    <input
+                      type="checkbox"
+                      name="deleteImages[]"
+                      value="<%= img.filename %>"
+                      style="display:none;"
+                    />
+
+                    <img
+                      src="<%= img.url %>"
+                      style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                        border-radius:8px;
+                        border:1px solid #ddd;
+                      "
+                    />
+
+                    <button
+                      type="button"
+                      onclick="markForDelete(this)"
+                      style="
+                        position:absolute;
+                        top:6px;
+                        right:6px;
+                        width:26px;
+                        height:26px;
+                        background:#dc3545;
+                        color:#fff;
+                        border:none;
+                        border-radius:50%;
+                        font-size:18px;
+                        line-height:26px;
+                        text-align:center;
+                        cursor:pointer;
+                      "
+                      title="Remove image"
+                    >
+                      ×
+                    </button>
+
+                  </div>
+                <% }) %>
+
+              </div>
+            </div>
+          <% } %>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">
+              Add / Upload New Images
+            </label>
+            <input
+              type="file"
+              name="images[]"
+              class="form-control"
+              accept="image/*"
+              multiple
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">
+              Description (English)
+            </label>
+            <textarea
+              name="descriptionEn"
+              rows="4"
+              class="form-control"
+              required
+            ><%= design.description.en %></textarea>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">
+              Description (తెలుగు)
+            </label>
+            <textarea
+              name="descriptionTe"
+              rows="4"
+              class="form-control"
+            ><%= design.description.te %></textarea>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-dark btn-sm px-4">
+              Save Changes
+            </button>
+
+            <a
+              href="/designs/<%= design._id %>"
+              class="btn btn-outline-secondary btn-sm"
+            >
+              Cancel
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function markForDelete(btn) {
+    const imageBox = btn.closest(".image-box");
+    const checkbox = imageBox.querySelector("input[type='checkbox']");
+
+    checkbox.checked = true;
+    imageBox.style.display = "none";
+  }
+</script>

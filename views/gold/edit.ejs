@@ -1,0 +1,176 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-9 col-lg-8">
+
+      <div class="card shadow-sm edit-card">
+        <div class="card-body">
+
+          <h3 class="text-center mb-4">Edit Gold Item</h3>
+
+          <form
+            action="/gold/<%= gold._id %>?_method=PUT"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+
+            <!-- TITLE -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Title</label>
+              <input
+                type="text"
+                name="title"
+                class="form-control"
+                value="<%= gold.title %>"
+                required
+              />
+            </div>
+
+            <!-- EXISTING IMAGES -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                Existing Images
+                <span class="text-muted">(tick to delete)</span>
+              </label>
+
+              <div class="image-grid">
+                <% gold.images.forEach(img => { %>
+                  <label class="image-box">
+                    <input
+                      type="checkbox"
+                      name="deleteImages"
+                      value="<%= img.filename %>"
+                    />
+                    <img src="<%= img.url %>" />
+                    <span class="delete-mark">✖</span>
+                  </label>
+                <% }) %>
+              </div>
+            </div>
+
+            <!-- ADD NEW IMAGES -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Add New Images</label>
+              <input
+                type="file"
+                id="imageInput"
+                name="images[]"
+                class="form-control"
+                multiple
+              />
+            </div>
+
+            <!-- PREVIEW -->
+            <div id="previewContainer" class="preview-grid mb-4"></div>
+
+            <!-- DESCRIPTION EN -->
+            <div class="mb-3">
+              <label class="form-label fw-semibold">
+                Description (English)
+              </label>
+              <textarea
+                name="descriptionEn"
+                rows="4"
+                class="form-control"
+              ><%= gold.description.en %></textarea>
+            </div>
+
+            <!-- DESCRIPTION TE -->
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                Description (తెలుగు)
+              </label>
+              <textarea
+                name="descriptionTe"
+                rows="4"
+                class="form-control"
+              ><%= gold.description.te %></textarea>
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="d-flex justify-content-end gap-2">
+              <a
+                href="/gold/<%= gold._id %>"
+                class="btn btn-outline-secondary"
+              >
+                Cancel
+              </a>
+              <button class="btn btn-dark px-4">
+                Save Changes
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .edit-card {
+    border-radius: 14px;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 12px;
+  }
+
+  .image-box {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .image-box input {
+    display: none;
+  }
+
+  .image-box img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: 0.2s;
+  }
+
+  .image-box .delete-mark {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    display: none;
+  }
+
+  .image-box input:checked + img {
+    border-color: #dc3545;
+    opacity: 0.6;
+  }
+
+  .image-box input:checked ~ .delete-mark {
+    display: block;
+  }
+
+  .preview-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .preview-grid img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+</style>

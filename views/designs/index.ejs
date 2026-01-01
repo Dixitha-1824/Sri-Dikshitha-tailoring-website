@@ -1,0 +1,98 @@
+<% layout('layouts/boilerplate') %>
+
+<h2 class="page-title text-center mb-4">Our Designs</h2>
+
+<!-- ADMIN BUTTON -->
+<% if (currentUser && currentUser.role === "admin") { %>
+  <div class="text-end mb-3">
+    <a href="/designs/new" class="btn btn-dark btn-sm">
+      ➕ Add New Design
+    </a>
+  </div>
+<% } %>
+
+<div class="row g-4">
+  <% designs.forEach(d => { %>
+
+    <div class="col-12 col-sm-6 col-lg-4">
+
+      <div class="design-card h-100">
+
+        <!-- IMAGE + TITLE CLICK -->
+        <a href="/designs/<%= d._id %>" class="text-decoration-none text-dark">
+
+          <!-- IMAGE SLIDER -->
+          <% if (d.images && d.images.length > 0) { %>
+            <div class="slider design-slider" data-index="0">
+
+              <% d.images.forEach((img, i) => { %>
+                <div class="design-card-img <%= i === 0 ? 'active' : '' %>">
+                  <img src="<%= img.url %>" alt="Design image">
+                </div>
+              <% }) %>
+
+              <% if (d.images.length > 1) { %>
+                <button
+                  class="slider-btn prev"
+                  onclick="event.preventDefault(); slide(this,-1)">
+                  ‹
+                </button>
+
+                <button
+                  class="slider-btn next"
+                  onclick="event.preventDefault(); slide(this,1)">
+                  ›
+                </button>
+              <% } %>
+
+            </div>
+          <% } %>
+
+          <!-- CARD BODY -->
+          <div class="design-body">
+
+            <h5 class="design-title"><%= d.title %></h5>
+
+            <% if (d.reviews && d.reviews.length > 0) { %>
+              <p class="rating-text">
+                ⭐
+                <%= (
+                  d.reviews.reduce((s,r)=>s+r.rating,0) /
+                  d.reviews.length
+                ).toFixed(1) %> / 5
+              </p>
+            <% } else { %>
+              <p class="rating-text muted">No ratings yet</p>
+            <% } %>
+
+          </div>
+
+        </a>
+
+        <!-- DESCRIPTION -->
+        <div class="design-body pt-0">
+          <p class="design-text">
+            <%= d.description.en %>
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  <% }) %>
+</div>
+
+<script>
+  function slide(btn, direction) {
+    const slider = btn.closest(".slider");
+    const images = slider.querySelectorAll(".design-card-img");
+    let index = parseInt(slider.dataset.index);
+
+    images[index].classList.remove("active");
+    index = (index + direction + images.length) % images.length;
+    images[index].classList.add("active");
+
+    slider.dataset.index = index;
+  }
+</script>

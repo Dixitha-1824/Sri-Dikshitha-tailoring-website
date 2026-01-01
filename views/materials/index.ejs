@@ -1,0 +1,63 @@
+<% layout("layouts/boilerplate") %>
+
+<h2 class="page-title text-center mb-4">
+  Dress Materials Collection
+</h2>
+
+<% if (currentUser && currentUser.role === "admin") { %>
+  <div class="text-end mb-3">
+    <a href="/materials/new" class="btn btn-dark btn-sm">
+      ➕ Add Material
+    </a>
+  </div>
+<% } %>
+
+<div class="row g-4">
+  <% materials.forEach(item => { %>
+
+    <div class="col-12 col-sm-6 col-lg-4">
+
+      <div class="material-card h-100">
+
+      
+        <a
+          href="/materials/<%= item._id %>"
+          class="text-decoration-none text-dark">
+
+          <!-- IMAGE -->
+          <% if (item.images && item.images.length > 0) { %>
+            <div class="slider material-slider" data-index="0">
+
+              <% item.images.forEach((img, i) => { %>
+                <div class="material-img-wrapper <%= i === 0 ? 'active' : '' %>">
+                  <img src="<%= img.url %>" alt="Material image">
+                </div>
+              <% }) %>
+
+            </div>
+          <% } %>
+
+          <!-- CONTENT -->
+          <div class="material-body text-center">
+
+            <h5 class="material-title"><%= item.title %></h5>
+
+            <p class="material-text">
+              <%= item.description.en.length > 90
+                ? item.description.en.slice(0, 90) + "..."
+                : item.description.en
+              %>
+            </p>
+
+            <span class="read-more-text">Read more</span>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  <% }) %>
+</div>

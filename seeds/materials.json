@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Cotton Dress Material",
+    "description": {
+      "en": "Soft cotton dress material suitable for daily wear and tailoring.",
+      "te": "రోజువారీ వాడకానికి మరియు కుట్టుకకు సరిపోయే మృదువైన కాటన్ డ్రెస్ మెటీరియల్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1593032465171-cf0a2a4f3b5c", "filename": "cotton-1" },
+      { "url": "https://images.unsplash.com/photo-1582719478185-2f7d20f7a32f", "filename": "cotton-2" }
+    ]
+  },
+  {
+    "title": "Silk Dress Material",
+    "description": {
+      "en": "Smooth silk fabric suitable for festive and wedding outfits.",
+      "te": "పండుగలు మరియు పెళ్లి దుస్తులకు సరిపోయే మృదువైన సిల్క్ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1600180758895-0c1f63c7c5c3", "filename": "silk-1" },
+      { "url": "https://images.unsplash.com/photo-1618354691414-8f8b1b9a5b8f", "filename": "silk-2" }
+    ]
+  },
+  {
+    "title": "Embroidery Blouse Fabric",
+    "description": {
+      "en": "Designer embroidery fabric ideal for blouse stitching.",
+      "te": "బ్లౌజ్ కుట్టుకకు సరిపోయే డిజైనర్ ఎంబ్రాయిడరీ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1591369822096-ffd140ec948f", "filename": "embroidery-1" },
+      { "url": "https://images.unsplash.com/photo-1601933470928-c8c4f7c8b3e5", "filename": "embroidery-2" }
+    ]
+  },
+  {
+    "title": "Chiffon Dress Material",
+    "description": {
+      "en": "Lightweight chiffon fabric suitable for party wear dresses.",
+      "te": "పార్టీ వేర్ డ్రెస్సులకు సరిపోయే తేలికపాటి షిఫాన్ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1585238342028-4a6a36f0d9a4", "filename": "chiffon-1" },
+      { "url": "https://images.unsplash.com/photo-1602810319428-019690571b5b", "filename": "chiffon-2" }
+    ]
+  },
+  {
+    "title": "Georgette Fabric",
+    "description": {
+      "en": "Georgette fabric perfect for salwar suits and kurtis.",
+      "te": "సల్వార్ సూట్స్ మరియు కుర్తీలకు సరిపోయే జార్జెట్ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1618220179428-22790b461013", "filename": "georgette-1" },
+      { "url": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633", "filename": "georgette-2" }
+    ]
+  },
+  {
+    "title": "Net Embroidery Material",
+    "description": {
+      "en": "Net embroidery fabric for designer blouse work.",
+      "te": "డిజైనర్ బ్లౌజ్ పనికి సరిపోయే నెట్ ఎంబ్రాయిడరీ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb", "filename": "net-1" },
+      { "url": "https://images.unsplash.com/photo-1601933470928-c8c4f7c8b3e5", "filename": "net-2" }
+    ]
+  },
+  {
+    "title": "Printed Rayon Fabric",
+    "description": {
+      "en": "Printed rayon fabric suitable for casual dresses.",
+      "te": "క్యాజువల్ డ్రెస్సులకు సరిపోయే ప్రింటెడ్ రేయాన్ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1589987607627-616cac2c9a6c", "filename": "rayon-1" },
+      { "url": "https://images.unsplash.com/photo-1582719478185-2f7d20f7a32f", "filename": "rayon-2" }
+    ]
+  },
+  {
+    "title": "Banarasi Silk Fabric",
+    "description": {
+      "en": "Rich Banarasi silk fabric for bridal wear.",
+      "te": "వధూవేషాలకు సరిపోయే రిచ్ బనారసీ సిల్క్ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1620799139507-2a76f79d7b97", "filename": "banarasi-1" },
+      { "url": "https://images.unsplash.com/photo-1618354691414-8f8b1b9a5b8f", "filename": "banarasi-2" }
+    ]
+  },
+  {
+    "title": "Linen Fabric",
+    "description": {
+      "en": "Breathable linen fabric ideal for summer wear.",
+      "te": "వేసవికాలానికి సరిపోయే శ్వాసక్రియ గల లినెన్ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1594041680534-e8c8cdebd659", "filename": "linen-1" },
+      { "url": "https://images.unsplash.com/photo-1593032465171-cf0a2a4f3b5c", "filename": "linen-2" }
+    ]
+  },
+  {
+    "title": "Velvet Fabric",
+    "description": {
+      "en": "Soft velvet fabric suitable for festive and winter wear.",
+      "te": "పండుగలు మరియు చలికాలానికి సరిపోయే మృదువైన వెల్వెట్ ఫ్యాబ్రిక్."
+    },
+    "images": [
+      { "url": "https://images.unsplash.com/photo-1617957743103-310accdfd4a9", "filename": "velvet-1" },
+      { "url": "https://images.unsplash.com/photo-1601933470928-c8c4f7c8b3e5", "filename": "velvet-2" }
+    ]
+  }
+]

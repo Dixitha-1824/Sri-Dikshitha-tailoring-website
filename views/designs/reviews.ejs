@@ -1,0 +1,38 @@
+<% layout('layouts/boilerplate') %>
+
+<h3 class="page-title">Leave a Review</h3>
+
+<div class="card p-3">
+  <h5><%= design.title %></h5>
+
+  <form
+    action="/design-reviews/<%= design._id %>/reviews"
+    method="POST"
+    class="review-form mt-3">
+
+    <label>Your Rating</label>
+    <select name="rating" required>
+      <option value="5">★★★★★</option>
+      <option value="4">★★★★</option>
+      <option value="3">★★★</option>
+      <option value="2">★★</option>
+      <option value="1">★</option>
+    </select>
+
+    <label class="mt-2">Comment (English)</label>
+    <textarea
+      name="commentEn"
+      rows="3"
+      required></textarea>
+
+    <label class="mt-2">Comment (Telugu)</label>
+    <textarea
+      name="commentTe"
+      rows="3"
+      required></textarea>
+
+    <button class="btn btn-primary btn-sm mt-3">
+      Submit Review
+    </button>
+  </form>
+</div>

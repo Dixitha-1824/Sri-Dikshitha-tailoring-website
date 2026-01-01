@@ -1,0 +1,142 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+
+      <div class="card p-4 shadow-sm">
+
+        <h3 class="mb-4">Add Material</h3>
+
+        <form action="/materials" method="POST" enctype="multipart/form-data">
+
+          <!-- TITLE -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Material Title</label>
+            <input type="text" name="title" class="form-control" required>
+          </div>
+
+          <!-- IMAGE INPUT -->
+          <div class="mb-2">
+            <label class="form-label fw-semibold">Upload Images</label>
+            <input
+              type="file"
+              id="imageInput"
+              name="images"
+              class="form-control"
+              accept="image/*"
+              multiple
+            >
+          </div>
+
+          <!-- IMAGE PREVIEW -->
+          <div id="previewContainer" class="d-flex flex-wrap gap-3 mt-3"></div>
+
+          <!-- DESCRIPTION EN -->
+          <div class="mb-3 mt-4">
+            <label class="form-label fw-semibold">Description (English)</label>
+            <textarea name="descriptionEn" rows="4" class="form-control" required></textarea>
+          </div>
+
+          <!-- DESCRIPTION TE -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Description (తెలుగు)</label>
+            <textarea name="descriptionTe" rows="4" class="form-control"></textarea>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-dark btn-sm px-4">Add Material</button>
+            <a href="/materials" class="btn btn-outline-secondary btn-sm">Cancel</a>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .preview-box {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  .preview-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .remove-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const imageInput = document.getElementById("imageInput");
+  const previewContainer = document.getElementById("previewContainer");
+
+  let selectedFiles = [];
+
+  imageInput.addEventListener("change", () => {
+  const newFiles = Array.from(imageInput.files);
+
+  newFiles.forEach(file => {
+    // prevent duplicate files
+    if (!selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+      selectedFiles.push(file);
+    }
+  });
+
+  updateFileInput();
+  renderPreviews();
+});
+
+
+  function renderPreviews() {
+    previewContainer.innerHTML = "";
+
+    selectedFiles.forEach((file, index) => {
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        const box = document.createElement("div");
+        box.className = "preview-box";
+
+        box.innerHTML = `
+          <img src="${e.target.result}">
+          <button type="button" class="remove-btn">×</button>
+        `;
+
+        box.querySelector(".remove-btn").onclick = () => {
+          selectedFiles.splice(index, 1);
+          updateFileInput();
+          renderPreviews();
+        };
+
+        previewContainer.appendChild(box);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function updateFileInput() {
+    const dataTransfer = new DataTransfer();
+    selectedFiles.forEach(file => dataTransfer.items.add(file));
+    imageInput.files = dataTransfer.files;
+  }
+</script>

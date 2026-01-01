@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate') %>
+
+<h3>Design Reviews – Approval</h3>
+
+<% reviews.forEach(r => { %>
+  <div style="border-bottom:1px solid #ddd; padding:10px 0;">
+    <p><strong>Design:</strong> <%= r.design.title %></p>
+    <p>Rating: <%= r.rating %> ⭐</p>
+    <p><%= r.comment %></p>
+
+    <% if (!r.approved) { %>
+      <form action="/design-reviews/admin/reviews/<%= r._id %>/approve" method="POST">
+        <button class="btn btn-sm btn-success">Approve</button>
+      </form>
+    <% } else { %>
+      <span>✅ Approved</span>
+    <% } %>
+  </div>
+<% }) %>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Materials</title>
+</head>
+<body>
+
+  <h1>Available Materials</h1>
+
+  <% materials.forEach(item => { %>
+    <div style="margin-bottom:20px;">
+      <h3><%= item.name %></h3>
+      <p>Category: <%= item.category %></p>
+      <img src="<%= item.image %>" width="200">
+      <p>
+        Status:
+        <strong>
+          <%= item.available ? "Available" : "Out of Stock" %>
+        </strong>
+      </p>
+    </div>
+  <% }) %>
+
+</body>
+</html>

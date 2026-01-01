@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Bridal Maggam Blouse",
+    "description": {
+      "en": "Heavy bridal maggam work with stones and kundans.",
+      "te": "రాళ్లు మరియు కుందన్లతో చేసిన హెవీ బ్రైడల్ మగ్గం పని."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/maggam1/600/400" },
+      { "url": "https://picsum.photos/seed/maggam2/600/400" },
+      { "url": "https://picsum.photos/seed/maggam3/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Simple Embroidery Blouse",
+    "description": {
+      "en": "Light embroidery suitable for daily wear.",
+      "te": "రోజువారీ ఉపయోగానికి సరిపోయే లైట్ ఎంబ్రాయిడరీ."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/embro1/600/400" },
+      { "url": "https://picsum.photos/seed/embro2/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Kids Frock Design",
+    "description": {
+      "en": "Colorful embroidery design for kids frocks.",
+      "te": "పిల్లల ఫ్రాక్‌ల కోసం రంగుల ఎంబ్రాయిడరీ డిజైన్."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/kids1/600/400" },
+      { "url": "https://picsum.photos/seed/kids2/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Silk Saree Border Work",
+    "description": {
+      "en": "Elegant embroidery border for silk sarees.",
+      "te": "సిల్క్ చీరల కోసం అందమైన బోర్డర్ పని."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/silk1/600/400" },
+      { "url": "https://picsum.photos/seed/silk2/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Party Wear Blouse",
+    "description": {
+      "en": "Modern embroidery suitable for party wear.",
+      "te": "పార్టీ వేర్‌కు సరిపోయే ఆధునిక ఎంబ్రాయిడరీ."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/party1/600/400" },
+      { "url": "https://picsum.photos/seed/party2/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Lehenga Choli Design",
+    "description": {
+      "en": "Rich embroidery design for lehenga choli.",
+      "te": "లెహెంగా చోలీ కోసం రిచ్ ఎంబ్రాయిడరీ డిజైన్."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/lehenga1/600/400" },
+      { "url": "https://picsum.photos/seed/lehenga2/600/400" },
+      { "url": "https://picsum.photos/seed/lehenga3/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Cotton Saree Blouse",
+    "description": {
+      "en": "Simple and elegant embroidery for cotton sarees.",
+      "te": "కాటన్ చీరల కోసం సింపుల్ మరియు అందమైన ఎంబ్రాయిడరీ."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/cotton1/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Designer Kurti Work",
+    "description": {
+      "en": "Trendy embroidery work for designer kurtis.",
+      "te": "డిజైనర్ కుర్తీల కోసం ట్రెండీ ఎంబ్రాయిడరీ పని."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/kurti1/600/400" },
+      { "url": "https://picsum.photos/seed/kurti2/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Wedding Saree Work",
+    "description": {
+      "en": "Premium embroidery suitable for wedding sarees.",
+      "te": "వివాహ చీరల కోసం ప్రీమియం ఎంబ్రాయిడరీ పని."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/wedding1/600/400" },
+      { "url": "https://picsum.photos/seed/wedding2/600/400" }
+    ],
+    "reviews": []
+  },
+  {
+    "title": "Office Wear Blouse",
+    "description": {
+      "en": "Neat embroidery suitable for office wear.",
+      "te": "ఆఫీస్ వేర్‌కు సరిపోయే నీట్ ఎంబ్రాయిడరీ."
+    },
+    "images": [
+      { "url": "https://picsum.photos/seed/office1/600/400" }
+    ],
+    "reviews": []
+  }
+]

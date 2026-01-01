@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Material</title>
+</head>
+<body>
+
+  <h1>Add Material</h1>
+
+  <form action="/admin/materials" method="POST">
+
+    <label>Name</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Category</label><br>
+    <select name="category">
+      <option value="dress">Dress Material</option>
+      <option value="top">Top</option>
+      <option value="legging">Legging</option>
+    </select><br><br>
+
+    <label>Image URL</label><br>
+    <input type="text" name="image" required><br><br>
+
+    <label>
+      <input type="checkbox" name="available" checked>
+      Available
+    </label><br><br>
+
+    <button type="submit">Add Material</button>
+  </form>
+
+</body>
+</html>

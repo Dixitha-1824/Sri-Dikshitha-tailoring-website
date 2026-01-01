@@ -1,0 +1,653 @@
+/* =====================
+   ROOT + VARIABLES (INDUSTRIAL THEME)
+===================== */
+:root {
+  --bg-main: #f7f8fa;
+  --bg-card: #ffffff;
+  --border-light: #e4e6eb;
+
+  --text-main: #2e2e2e;
+  --text-muted: #6b6f76;
+
+  --accent: #c6a24a;          
+  --accent-dark: #a7893e;
+
+  --success-bg: #e6f4ea;
+  --success-text: #2e7d32;
+
+  --danger-bg: #fdecea;
+  --danger-text: #c62828;
+
+  --transition-fast: 0.25s ease;
+  --transition-slow: 0.45s ease;
+}
+
+/* =====================
+   GLOBAL
+===================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-main);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-main);
+  padding-top: 72px;
+  animation: pageFade 0.5s ease;
+}
+
+/* PAGE FADE */
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================
+   NAVBAR (FIXED)
+===================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid var(--border-light);
+  transition: box-shadow var(--transition-fast);
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+/* Brand */
+.navbar-brand {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+/* Nav links */
+.navbar .nav-link {
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
+  margin-left: 10px;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition-fast);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  width: 100%;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--accent) !important;
+  font-weight: 500;
+}
+
+/* Mobile toggle */
+.navbar-toggler {
+  border-color: var(--border-light);
+}
+
+/* =====================
+   HOME CARD
+===================== */
+.home-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.home-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.shop-title {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.shop-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* =====================
+   STATUS BADGE
+===================== */
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-badge.open {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+}
+
+.status-badge.closed {
+  background-color: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+/* =====================
+   LANGUAGE BUTTON
+===================== */
+.lang-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.lang-btn:hover {
+  color: var(--accent-dark);
+}
+
+/* =====================
+   PAGE TITLE
+===================== */
+.page-title {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.6rem;
+}
+
+/* =====================
+   SLIDER (COMMON)
+===================== */
+.slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  font-size: 1.2rem;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.slider-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.slider-btn.prev { left: 10px; }
+.slider-btn.next { right: 10px; }
+
+/* =====================
+   DESIGN & MATERIAL CARDS
+===================== */
+.design-card,
+.material-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.design-card:hover,
+.material-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.09);
+}
+
+.design-body,
+.material-card .card-body {
+  padding: 1rem;
+}
+
+.design-title,
+.material-card h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.design-text,
+.material-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* =====================
+   IMAGES (SMOOTH SWITCH)
+===================== */
+.design-img,
+.material-img,
+.gold-img {
+  display: none;
+  transition: opacity var(--transition-fast);
+}
+
+.design-img.active,
+.material-img.active,
+.gold-img.active {
+  display: block;
+  animation: fadeImg 0.4s ease;
+}
+
+@keyframes fadeImg {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =====================
+   MOBILE
+===================== */
+@media (max-width: 576px) {
+  body {
+    padding-top: 64px;
+  }
+
+  .home-card {
+    padding: 1.4rem;
+  }
+
+  .shop-title {
+    font-size: 1.35rem;
+  }
+}
+
+/* =====================
+   HOME PAGE ANIMATIONS
+===================== */
+.animate-slide {
+  animation: slideUp 0.7s ease forwards;
+}
+
+.animate-slide.delay {
+  animation-delay: 0.15s;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* STATUS PILL */
+.status-pill {
+  border-radius: 30px;
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* LANGUAGE BLOCK */
+.lang-block {
+  transition: opacity 0.3s ease;
+}
+
+/* =====================
+   CONTACT SECTION
+===================== */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+.contact-icon {
+  font-size: 1.6rem;
+}
+
+.contact-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.contact-text {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* MOBILE CENTER ALIGN */
+@media (max-width: 576px) {
+  .contact-item {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* =====================
+   DESIGNS LIST PAGE
+===================== */
+
+.design-slider {
+  height: 220px;
+  background: #f5f5f5;
+}
+
+.design-card-img {
+  display: none;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.design-card-img.active {
+  display: flex;
+}
+
+.design-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* DESCRIPTION LIMIT */
+.design-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* RATING */
+.rating-text {
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.rating-text.muted {
+  color: var(--text-muted);
+}
+
+/* MOBILE TOUCH IMPROVEMENTS */
+@media (max-width: 576px) {
+  .slider-btn {
+    padding: 8px 12px;
+    font-size: 1.4rem;
+  }
+
+  .design-slider {
+    height: 200px;
+  }
+}
+
+/* =====================
+   DESIGN SHOW PAGE
+===================== */
+
+.design-show-slider {
+  height: 360px;
+  background: #f5f5f5;
+  border-radius: 16px;
+}
+
+.design-show-img {
+  display: none;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.design-show-img.active {
+  display: flex;
+}
+
+.design-show-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* DESCRIPTION */
+.design-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.read-more-btn {
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+/* REVIEWS */
+.review-item {
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+/* MOBILE */
+@media (max-width: 576px) {
+  .design-show-slider {
+    height: 240px;
+  }
+}
+
+/* =====================
+   MATERIALS LIST PAGE
+===================== */
+
+.material-slider {
+  height: 200px;
+  background: #f5f5f5;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+}
+
+.material-img-wrapper {
+  display: none;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.material-img-wrapper.active {
+  display: flex;
+}
+
+.material-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CARD BODY */
+.material-body {
+  padding: 1rem;
+}
+
+.material-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.material-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.read-more-text {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* HOVER FEEL */
+.material-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.material-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.09);
+}
+
+/* MOBILE */
+@media (max-width: 576px) {
+  .material-slider {
+    height: 180px;
+  }
+}
+
+.toast {
+  animation: toastSlide 0.4s ease;
+}
+
+@keyframes toastSlide {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =========================
+   CUSTOMER REVIEWS (FINAL)
+========================= */
+
+/* =========================
+   CUSTOMER REVIEWS – POLISHED
+========================= */
+
+.reviews-section {
+  margin-top: 3.5rem;
+  max-width: 760px;
+}
+
+/* Title */
+.reviews-title {
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.2px;
+}
+
+/* Review Card */
+.review-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #e6e8ec;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+/* Username */
+.review-user {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+/* Rating */
+.review-rating {
+  font-size: 0.9rem;
+  color: #f4b400;
+  background: #fff7e6;
+  padding: 0.25rem 0.55rem;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Comment */
+.review-comment {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* No reviews */
+.no-reviews {
+  font-size: 0.95rem;
+  color: #777;
+  font-style: italic;
+}

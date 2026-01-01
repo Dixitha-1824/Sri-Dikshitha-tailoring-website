@@ -1,0 +1,82 @@
+[
+  {
+    "title": "One Gram Gold Necklace Set",
+    "description": {
+      "en": "Traditional one gram gold necklace suitable for weddings and functions.",
+      "te": "వివాహాలు మరియు ఫంక్షన్లకు సరిపోయే సాంప్రదాయ వన్ గ్రాము బంగారు నెక్లెస్."
+    },
+    "isSold": false,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a",
+        "filename": "gold-necklace-1"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1617038220319-276d3cfab638",
+        "filename": "gold-necklace-2"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d",
+        "filename": "gold-necklace-3"
+      }
+    ]
+  },
+  {
+    "title": "One Gram Gold Bangles",
+    "description": {
+      "en": "Elegant one gram gold bangles with detailed traditional design.",
+      "te": "సాంప్రదాయ డిజైన్‌తో అందమైన వన్ గ్రాము బంగారు గాజులు."
+    },
+    "isSold": false,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d",
+        "filename": "gold-bangles-1"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a",
+        "filename": "gold-bangles-2"
+      }
+    ]
+  },
+  {
+    "title": "One Gram Gold Earrings",
+    "description": {
+      "en": "Lightweight one gram gold earrings perfect for daily and festive wear.",
+      "te": "రోజువారీ మరియు పండుగల కోసం తేలికపాటి వన్ గ్రాము బంగారు చెవిపోగులు."
+    },
+    "isSold": true,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1621600411688-4be93cd68504",
+        "filename": "gold-earrings-1"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1617038220319-276d3cfab638",
+        "filename": "gold-earrings-2"
+      }
+    ]
+  },
+  {
+    "title": "One Gram Gold Haram",
+    "description": {
+      "en": "Long traditional one gram gold haram with classic finish.",
+      "te": "క్లాసిక్ ఫినిష్‌తో పొడవైన వన్ గ్రాము బంగారు హారం."
+    },
+    "isSold": false,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1617038220319-276d3cfab638",
+        "filename": "gold-haram-1"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a",
+        "filename": "gold-haram-2"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d",
+        "filename": "gold-haram-3"
+      }
+    ]
+  }
+]

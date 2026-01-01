@@ -1,0 +1,147 @@
+<% layout("layouts/boilerplate") %>
+
+<h2 class="page-title text-center mb-4">
+  One Gram Gold Collection
+</h2>
+
+<!-- ADMIN -->
+<% if (currentUser && currentUser.role === "admin") { %>
+  <div class="text-end mb-3">
+    <a href="/gold/new" class="btn btn-dark btn-sm">
+      ➕ Add Gold Item
+    </a>
+  </div>
+<% } %>
+
+
+<div class="row g-4">
+  <% goldItems.forEach(item => { %>
+    <div class="col-12 col-sm-6 col-md-4">
+
+      <div class="card h-100 shadow-sm material-card">
+
+
+        <a href="/gold/<%= item._id %>" class="text-decoration-none text-dark">
+
+          <!-- IMAGE SLIDER -->
+          <% if (item.images && item.images.length > 0) { %>
+            <div class="slider" data-index="0">
+
+              <% item.images.forEach((img, i) => { %>
+                <img
+                  src="<%= img.url %>"
+                  class="gold-img <%= i === 0 ? 'active' : '' %>"
+                >
+              <% }) %>
+
+              <% if (item.images.length > 1) { %>
+                <button
+                  class="slider-btn prev"
+                  onclick="event.preventDefault(); slide(this, -1)"
+                >‹</button>
+
+                <button
+                  class="slider-btn next"
+                  onclick="event.preventDefault(); slide(this, 1)"
+                >›</button>
+              <% } %>
+
+            </div>
+          <% } %>
+
+          <div class="card-body text-center">
+            <h5 class="mt-2"><%= item.title %></h5>
+          </div>
+
+        </a>
+
+        <!-- INFO -->
+        <div class="card-body text-center pt-0">
+
+          <!-- STATUS -->
+          <% if (item.isSold) { %>
+            <p class="status sold">❌ Sold</p>
+          <% } else { %>
+            <p class="status sale">✅ On Sale</p>
+          <% } %>
+
+          <!-- ENGLISH DESCRIPTION -->
+          <p class="gold-desc desc-en">
+            <%= item.description.en %>
+          </p>
+
+          <!-- TELUGU DESCRIPTION -->
+          <p class="gold-desc desc-te d-none">
+            <%= item.description.te %>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  <% }) %>
+</div>
+
+<style>
+  .gold-img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    display: none;
+  }
+
+  .gold-img.active {
+    display: block;
+  }
+
+  .gold-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #333;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .status.sale {
+    color: green;
+    font-weight: 600;
+  }
+
+  .status.sold {
+    color: red;
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  function slide(btn, direction) {
+    const slider = btn.parentElement;
+    const images = slider.querySelectorAll(".gold-img");
+    let index = parseInt(slider.dataset.index);
+
+    images[index].classList.remove("active");
+    index += direction;
+
+    if (index < 0) index = images.length - 1;
+    if (index >= images.length) index = 0;
+
+    images[index].classList.add("active");
+    slider.dataset.index = index;
+  }
+
+  function toggleGoldListLang(e) {
+    const enBlocks = document.querySelectorAll(".desc-en");
+    const teBlocks = document.querySelectorAll(".desc-te");
+
+    enBlocks.forEach(el => el.classList.toggle("d-none"));
+    teBlocks.forEach(el => el.classList.toggle("d-none"));
+
+    e.target.innerText =
+      e.target.innerText === "తెలుగు"
+        ? "English"
+        : "తెలుగు";
+  }
+</script>

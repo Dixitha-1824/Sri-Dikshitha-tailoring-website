@@ -1,0 +1,101 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8">
+
+      <div class="card p-4 shadow-sm">
+
+        <h3 class="mb-4">Edit Material</h3>
+
+        <form
+          action="/materials/<%= material._id %>?_method=PUT"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+
+          <!-- TITLE -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Material Title</label>
+            <input
+              type="text"
+              name="title"
+              class="form-control"
+              value="<%= material.title %>"
+              required
+            >
+          </div>
+
+          <!-- EXISTING IMAGES -->
+          <% if (material.images.length > 0) { %>
+            <div class="mb-3">
+              <label class="form-label fw-semibold">
+                Existing Images (tick to delete)
+              </label>
+
+              <div class="d-flex flex-wrap gap-3">
+                <% material.images.forEach(img => { %>
+                  <label style="position:relative;">
+                    <input
+                      type="checkbox"
+                      name="deleteImages"
+                      value="<%= img.filename %>"
+                      style="position:absolute; top:6px; left:6px;"
+                    >
+                    <img
+                      src="<%= img.url %>"
+                      style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
+                    >
+                  </label>
+                <% }) %>
+              </div>
+            </div>
+          <% } %>
+
+          <!-- ADD NEW IMAGES -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Add New Images</label>
+            <input
+              type="file"
+              name="images[]"
+              class="form-control"
+              accept="image/*"
+              multiple
+            >
+          </div>
+
+          <!-- DESCRIPTION EN -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Description (English)</label>
+            <textarea
+              name="descriptionEn"
+              rows="4"
+              class="form-control"
+              required
+            ><%= material.description.en %></textarea>
+          </div>
+
+          <!-- DESCRIPTION TE -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Description (తెలుగు)</label>
+            <textarea
+              name="descriptionTe"
+              rows="4"
+              class="form-control"
+            ><%= material.description.te %></textarea>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-dark btn-sm px-4">Save Changes</button>
+            <a href="/materials/<%= material._id %>" class="btn btn-outline-secondary btn-sm">
+              Cancel
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

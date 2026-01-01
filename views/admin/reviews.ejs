@@ -1,0 +1,85 @@
+<% layout("layouts/boilerplate") %>
+
+<h2 class="page-title mb-4">Review Approval</h2>
+
+<% if (reviews.length === 0) { %>
+  <p class="text-muted">No reviews found.</p>
+<% } %>
+
+<div class="row g-3">
+
+  <% reviews.forEach(r => { %>
+    <div class="col-12">
+
+      <div class="card shadow-sm p-3">
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <strong>
+            <%= r.author?.username || "User" %>
+          </strong>
+          <span>⭐ <%= r.rating %>/5</span>
+        </div>
+
+        <p class="mb-2 text-muted">
+          <%= r.comment %>
+        </p>
+
+        <div class="mb-3">
+
+          <% if (r.design) { %>
+            <a
+              href="/designs/<%= r.design._id %>"
+              target="_blank"
+              class="badge bg-primary text-decoration-none">
+              Design: <%= r.design.title %>
+            </a>
+          <% } %>
+
+          <% if (r.material) { %>
+            <a
+              href="/materials/<%= r.material._id %>"
+              target="_blank"
+              class="badge bg-success text-decoration-none">
+              Material: <%= r.material.title %>
+            </a>
+          <% } %>
+
+          <% if (r.gold) { %>
+            <a
+              href="/gold/<%= r.gold._id %>"
+              target="_blank"
+              class="badge bg-warning text-dark text-decoration-none">
+              Gold: <%= r.gold.title %>
+            </a>
+          <% } %>
+
+        </div>
+
+        <div class="d-flex gap-2">
+
+          <% if (!r.approved) { %>
+            <form
+              method="POST"
+              action="/admin/reviews/<%= r._id %>/approve?_method=PUT">
+              <button class="btn btn-sm btn-success">
+                Approve
+              </button>
+            </form>
+          <% } %>
+
+          <form
+            method="POST"
+            action="/admin/reviews/<%= r._id %>?_method=DELETE">
+            <button class="btn btn-sm btn-outline-danger">
+              Delete
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  <% }) %>
+
+</div>

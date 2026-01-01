@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shop Availability</title>
+</head>
+<body>
+
+  <h1>Shop Status</h1>
+
+  <p>
+    Current Status:
+    <strong>
+      <%= status.shopOpen ? "OPEN" : "CLOSED" %>
+    </strong>
+  </p>
+
+  <form action="/admin/availability" method="POST">
+    <button name="shopOpen" value="open">Open Shop</button>
+    <button name="shopOpen" value="close">Close Shop</button>
+  </form>
+
+</body>
+</html>

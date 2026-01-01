@@ -1,0 +1,186 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="admin-dashboard-wrapper">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="page-title">Admin Dashboard</h2>
+    <div class="text-muted small">
+      Logged in as <strong><%= currentUser.username %></strong>
+    </div>
+  </div>
+
+  <div class="row g-4">
+
+    <div class="col-12 col-md-4">
+      <div class="card admin-card shadow-sm text-center h-100">
+        <div class="card-body">
+          <h5 class="card-title">Pending Reviews</h5>
+
+          <div class="admin-count text-warning">
+            <%= pendingReviewsCount %>
+          </div>
+
+          <p class="text-muted small mb-3">
+            Reviews waiting for approval
+          </p>
+
+          <a href="/admin/reviews" class="btn btn-outline-primary w-100">
+            Manage Reviews
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card admin-card shadow-sm text-center h-100">
+        <div class="card-body">
+          <h5 class="card-title">Designs</h5>
+
+          <div class="admin-count text-success">
+            <%= designsCount %>
+          </div>
+
+          <p class="text-muted small mb-3">
+            Designs currently listed
+          </p>
+
+          <a href="/designs" class="btn btn-outline-success w-100">
+            View Designs
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card admin-card shadow-sm text-center h-100">
+        <div class="card-body">
+          <h5 class="card-title">Materials</h5>
+
+          <div class="admin-count text-info">
+            <%= materialsCount %>
+          </div>
+
+          <p class="text-muted small mb-3">
+            Materials listed
+          </p>
+
+          <a href="/materials" class="btn btn-outline-info w-100">
+            View Materials
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card admin-card shadow-sm text-center h-100">
+        <div class="card-body">
+          <h5 class="card-title">Gold Items</h5>
+
+          <div class="admin-count text-warning">
+            <%= goldCount %>
+          </div>
+
+          <p class="text-muted small mb-3">
+            Gold products
+          </p>
+
+          <a href="/gold" class="btn btn-outline-warning w-100">
+            View Gold
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card admin-card shadow-sm text-center h-100">
+        <div class="card-body">
+          <h5 class="card-title">Shop Status</h5>
+
+          <div class="shop-status-pill <%= shopOpen ? 'open' : 'closed' %>">
+            <%= shopOpen ? "OPEN" : "CLOSED" %>
+          </div>
+
+          <button
+            type="button"
+            class="btn <%= shopOpen ? 'btn-danger' : 'btn-success' %> w-100 mt-4"
+            data-bs-toggle="modal"
+            data-bs-target="#shopToggleModal">
+            <%= shopOpen ? "Close Shop" : "Open Shop" %>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="shopToggleModal"
+  tabindex="-1"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Change Shop Status</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal">
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <% if (shopOpen) { %>
+          Are you sure you want to <strong>close</strong> the shop?
+        <% } else { %>
+          Are you sure you want to <strong>open</strong> the shop?
+        <% } %>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          data-bs-dismiss="modal">
+          Cancel
+        </button>
+
+        <form method="POST" action="/admin/shop-toggle?_method=PUT">
+          <button class="btn btn-danger btn-sm">
+            Yes, Confirm
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .admin-count {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 0.6rem 0;
+  }
+
+  .shop-status-pill {
+    display: inline-block;
+    padding: 0.4rem 1.1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .shop-status-pill.open {
+    background: #e6f4ea;
+    color: #2e7d32;
+  }
+
+  .shop-status-pill.closed {
+    background: #fdecea;
+    color: #c62828;
+  }
+</style>

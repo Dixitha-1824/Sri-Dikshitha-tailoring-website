@@ -1,0 +1,76 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container" style="max-width:420px; margin-top:60px;">
+
+  <h2 class="text-center mb-4">Register</h2>
+
+  <% if (flashError && flashError.length) { %>
+    <div class="alert alert-danger text-center">
+      <%= flashError[0] %>
+    </div>
+  <% } %>
+
+  <% if (flashSuccess && flashSuccess.length) { %>
+    <div class="alert alert-success text-center">
+      <%= flashSuccess[0] %>
+    </div>
+  <% } %>
+
+  <form action="/register" method="POST">
+
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        required
+      >
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Mobile Number</label>
+
+      <div class="input-group">
+        <select
+          name="countryCode"
+          class="form-select"
+          style="max-width:110px;"
+          required
+        >
+          <option value="+91" selected>+91</option>
+        </select>
+
+        <input
+          type="tel"
+          name="phone"
+          class="form-control"
+          placeholder="10-digit mobile number"
+          pattern="[0-9]{10}"
+          required
+        >
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        required
+      >
+    </div>
+
+    <button class="btn btn-primary w-100">
+      Register
+    </button>
+
+  </form>
+
+  <p class="text-center mt-3">
+    Already have an account?
+    <a href="/login">Login</a>
+  </p>
+
+</div>

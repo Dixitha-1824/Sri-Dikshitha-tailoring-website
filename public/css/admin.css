@@ -1,0 +1,156 @@
+/* =====================
+   ADMIN ROOT
+===================== */
+:root {
+  --admin-bg: #f7f8fa;
+  --admin-card: #ffffff;
+  --admin-border: #e4e6eb;
+
+  --text-main: #2e2e2e;
+  --text-muted: #6b6f76;
+
+  --approve: #2e7d32;
+  --approve-light: #e6f4ea;
+
+  --delete: #c62828;
+  --delete-light: #fdecea;
+
+  --transition-fast: 0.25s ease;
+}
+
+/* =====================
+   ADMIN CONTAINER
+===================== */
+.review-admin-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 1.5rem;
+  animation: adminFade 0.4s ease;
+}
+
+@keyframes adminFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================
+   REVIEW CARD
+===================== */
+.review-card {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+  transition: box-shadow var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+/* =====================
+   TOP SECTION
+===================== */
+.review-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.review-top strong {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.review-top .rating {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* =====================
+   COMMENT TEXT
+===================== */
+.review-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0.6rem 0;
+  line-height: 1.6;
+}
+
+/* =====================
+   ACTIONS
+===================== */
+.review-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 0.8rem;
+}
+
+/* =====================
+   BUTTON BASE
+===================== */
+.btn {
+  padding: 7px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast),
+              background var(--transition-fast);
+}
+
+/* =====================
+   APPROVE BUTTON
+===================== */
+.approve {
+  background: var(--approve-light);
+  color: var(--approve);
+}
+
+.approve:hover {
+  background: var(--approve);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(46,125,50,0.25);
+}
+
+/* =====================
+   DELETE BUTTON
+===================== */
+.delete {
+  background: var(--delete-light);
+  color: var(--delete);
+}
+
+.delete:hover {
+  background: var(--delete);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(198,40,40,0.25);
+}
+
+/* =====================
+   MOBILE
+===================== */
+@media (max-width: 600px) {
+  .review-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

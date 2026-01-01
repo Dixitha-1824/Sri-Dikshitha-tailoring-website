@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add One Gram Gold</title>
+</head>
+<body>
+
+  <h1>Add One Gram Gold</h1>
+  <form action="/gold" method="POST" enctype="multipart/form-data">
+
+    <!-- TITLE -->
+    <label>Gold Item Name</label><br>
+    <input type="text" name="title" required><br><br>
+
+    <!-- ENGLISH DESCRIPTION -->
+    <label>Description (English)</label><br>
+    <textarea name="descriptionEn" rows="4"></textarea><br><br>
+
+    <!-- TELUGU DESCRIPTION -->
+    <label>వివరణ (తెలుగు)</label><br>
+    <textarea name="descriptionTe" rows="4"></textarea><br><br>
+
+    <!-- IMAGE UPLOAD -->
+    <label>Gold Images</label><br>
+    <input type="file" name="images" multiple required><br><br>
+
+    <button type="submit">Add Gold</button>
+  </form>
+
+</body>
+</html>

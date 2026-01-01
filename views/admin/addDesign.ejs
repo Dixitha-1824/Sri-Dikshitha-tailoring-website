@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Design</title>
+</head>
+<body>
+
+  <h1>Add New Design</h1>
+
+  <form action="/admin/designs" method="POST">
+
+    <label>Title</label><br>
+    <input type="text" name="title" required><br><br>
+
+    <label>Description (English)</label><br>
+    <textarea name="descriptionEn" required></textarea><br><br>
+
+    <label>Description (Telugu)</label><br>
+    <textarea name="descriptionTe" required></textarea><br><br>
+
+    <label>Image URL</label><br>
+    <input type="text" name="image" required><br><br>
+
+    <button type="submit">Add Design</button>
+  </form>
+
+</body>
+</html>

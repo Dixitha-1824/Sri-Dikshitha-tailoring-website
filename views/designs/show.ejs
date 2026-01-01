@@ -1,0 +1,246 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+  <div class="row g-5 align-items-start">
+
+    <!-- LEFT: IMAGE SLIDER -->
+    <div class="col-12 col-lg-6">
+      <% if (design.images && design.images.length > 0) { %>
+        <div class="slider design-show-slider" data-index="0">
+
+          <% design.images.forEach((img, i) => { %>
+            <div class="design-show-img <%= i === 0 ? 'active' : '' %>">
+              <img src="<%= img.url %>" alt="Design image">
+            </div>
+          <% }) %>
+
+          <% if (design.images.length > 1) { %>
+            <button type="button" class="slider-btn prev" onclick="slide(this,-1)">‹</button>
+            <button type="button" class="slider-btn next" onclick="slide(this,1)">›</button>
+          <% } %>
+
+        </div>
+      <% } %>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="col-12 col-lg-6">
+
+      <h2 class="mb-1"><%= design.title %></h2>
+
+      <% if (design.reviews.length > 0) { %>
+        <p class="text-muted mb-2">
+          ⭐ <strong>
+            <%= (
+              design.reviews.reduce((s,r)=>s+r.rating,0) /
+              design.reviews.length
+            ).toFixed(1) %>
+          </strong>
+          · <%= design.reviews.length %> reviews
+        </p>
+      <% } else { %>
+        <p class="text-muted mb-2">No ratings yet</p>
+      <% } %>
+
+      <!-- DESCRIPTION -->
+      <p
+        class="design-desc"
+        id="desc-<%= design._id %>"
+        data-full="<%= design.description.en.replace(/"/g,'&quot;') %>"
+        data-short="<%= design.description.en.slice(0,160).replace(/"/g,'&quot;') + '...' %>">
+
+        <%= design.description.en.length > 160
+          ? design.description.en.slice(0,160) + "..."
+          : design.description.en
+        %>
+      </p>
+
+      <% if (design.description.en.length > 160) { %>
+        <button
+          type="button"
+          class="btn btn-link p-0 read-more-btn"
+          id="btn-<%= design._id %>"
+          onclick="toggleReadMore('<%= design._id %>')">
+          Read more
+        </button>
+      <% } %>
+
+      <!-- ACTIONS -->
+      <div class="mt-3 d-flex flex-wrap gap-2">
+
+        <% if (currentUser && currentUser.role === "admin") { %>
+          <a href="/designs/<%= design._id %>/edit"
+             class="btn btn-outline-primary btn-sm">✏️ Edit</a>
+
+          <button type="button"
+                  class="btn btn-outline-danger btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteDesignModal">
+            🗑 Delete
+          </button>
+        <% } %>
+
+        <% if (currentUser && currentUser.role !== "admin") { %>
+          <button type="button"
+                  class="btn btn-outline-dark btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#reviewModal">
+            ✍️ Write a Review
+          </button>
+        <% } else if (!currentUser) { %>
+          <span class="text-muted small">Login to write a review</span>
+        <% } %>
+
+      </div>
+
+    </div>
+  </div>
+
+
+       <!-- CUSTOMER REVIEWS -->
+
+  <div class="reviews-section mt-5">
+
+    <h4 class="reviews-title">Customer Reviews</h4>
+
+    <% if (design.reviews.length === 0) { %>
+      <p class="no-reviews">No reviews yet.</p>
+    <% } %>
+
+    <% design.reviews.forEach(r => { %>
+      <div class="review-card">
+
+        <div class="review-header">
+          <span class="review-user">
+            <%= r.author?.username || "User" %>
+          </span>
+
+          <span class="review-rating">
+            ⭐ <%= r.rating %>/5
+          </span>
+        </div>
+
+        <p class="review-comment">
+          <%= r.comment || "" %>
+        </p>
+
+      </div>
+    <% }) %>
+
+  </div>
+
+</div>
+
+     <!-- REVIEW MODAL -->
+
+
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <form method="POST" action="/designs/<%= design._id %>/reviews">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Write a Review</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Rating</label>
+            <select name="rating" class="form-select" required>
+              <option value="">Select</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Your Review</label>
+            <textarea
+              name="commentEn"
+              class="form-control"
+              rows="3"
+              required></textarea>
+          </div>
+
+          <small class="text-muted">
+            Review will be visible after admin approval
+          </small>
+
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-dark btn-sm">Submit Review</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+     <!-- DELETE MODAL -->
+
+
+<div class="modal fade" id="deleteDesignModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Design</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        Are you sure? This cannot be undone.
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <form method="POST" action="/designs/<%= design._id %>?_method=DELETE">
+          <button class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  function slide(btn, direction) {
+    const slider = btn.closest(".slider");
+    const images = slider.querySelectorAll(".design-show-img");
+    let index = parseInt(slider.dataset.index || 0, 10);
+
+    images[index].classList.remove("active");
+    index = (index + direction + images.length) % images.length;
+    images[index].classList.add("active");
+    slider.dataset.index = index;
+  }
+
+  function toggleReadMore(id) {
+    const desc = document.getElementById(`desc-${id}`);
+    const btn = document.getElementById(`btn-${id}`);
+
+    const full = desc.dataset.full;
+    const short = desc.dataset.short;
+
+    if (btn.innerText === "Read more") {
+      desc.innerText = full;
+      btn.innerText = "Read less";
+    } else {
+      desc.innerText = short;
+      btn.innerText = "Read more";
+    }
+  }
+</script>
