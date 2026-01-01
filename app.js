@@ -21,55 +21,72 @@ const goldRoutes = require("./routes/gold");
 const adminRoutes = require("./routes/admin");
 const goldReviewRoutes = require("./routes/goldReviews");
 
-// Database connection
-mongoose.connect(process.env.MONGO_URL)
+/* =========================
+   DATABASE
+========================= */
+mongoose
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
+/* =========================
+   APP CONFIG
+========================= */
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-
-app.set("trust proxy", 1);
+app.set("trust proxy", 1); // 🔥 REQUIRED for Render + Mobile
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-app.use(session({
-  name: "sri-deekshitha-session",
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24,
-    sameSite: "lax"
-  }
-}));
+/* =========================
+   SESSION (FINAL FIX)
+========================= */
+app.use(
+  session({
+    name: "sri-deekshitha-session",
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    proxy: true, // 🔥 IMPORTANT
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // 🔥 mobile fix
+      sameSite: "lax",
+      maxAge: 1000 * 60 * 60 * 24
+    }
+  })
+);
 
 app.use(flash());
 
-// Make user & flash available in all views
+/* =========================
+   GLOBAL MIDDLEWARE
+========================= */
 app.use(async (req, res, next) => {
-  res.locals.currentUser = null;
+  try {
+    res.locals.currentUser = null;
 
-  if (req.session.userId) {
-    try {
+    if (req.session.userId) {
       res.locals.currentUser = await User.findById(req.session.userId);
-    } catch {
-      req.session.userId = null;
     }
+
+    res.locals.flashSuccess = req.flash("success");
+    res.locals.flashError = req.flash("error");
+
+    next(); // ✅ ALWAYS REACHED
+  } catch (err) {
+    console.error("Global middleware error:", err);
+    next(err); // 🔥 important
   }
-
-  res.locals.flashSuccess = req.flash("success");
-  res.locals.flashError = req.flash("error");
-
-  next();
 });
 
-// Home page
+/* =========================
+   HOME
+========================= */
 app.get("/", async (req, res) => {
   let status = await Availability.findOne();
 
@@ -81,7 +98,9 @@ app.get("/", async (req, res) => {
   res.render("home", { status });
 });
 
-// Routes
+/* =========================
+   ROUTES
+========================= */
 app.use("/", authRoutes);
 
 app.use("/designs", designRoutes);
@@ -93,9 +112,19 @@ app.use("/materials/:materialId/reviews", materialReviewRoutes);
 app.use("/gold", goldRoutes);
 app.use("/gold/:id/reviews", goldReviewRoutes);
 
-// Admin routes
 app.use("/admin", adminRoutes);
 
+/* =========================
+   ERROR HANDLER (IMPORTANT)
+========================= */
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).render("error", { err });
+});
+
+/* =========================
+   SERVER
+========================= */
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
