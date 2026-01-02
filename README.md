@@ -1,4 +1,4 @@
-# Sri Deekshitha Tailoring Website 
+# Sri Dikshitha – Tailoring Management Web Application
 
 This is a full-stack tailoring shop website built using Node.js, Express, and MongoDB.
 
@@ -14,6 +14,20 @@ This is a full-stack tailoring shop website built using Node.js, Express, and Mo
 - Add, edit, delete designs, materials, and gold
 - Approve customer reviews
 - Open / close shop status
+
+## Admin Access
+
+This application uses role-based access control.
+
+• Admin accounts are pre-configured in the database  
+• Admin credentials are NOT publicly exposed for security reasons  
+• Only users with the `admin` role can access the admin dashboard  
+• Regular users are registered with `user` role by default  
+
+To change or add admins:
+• Update the user role directly in MongoDB Atlas
+• Set `role: "admin"` for the required user
+
 
 ## Tech Stack
 - Node.js
