@@ -26,6 +26,7 @@ This application uses role-based access control.
 
 To change or add admins:
 • Update the user role directly in MongoDB Atlas
+
 • Set `role: "admin"` for the required user
 
 
